@@ -42,7 +42,7 @@ public class Principal {
                         Servicios.listarServicios();
                         break;
                     case 2:
-                        // Servicios.listarServicios(codUsuario);
+                        Servicios.listarServicios(codUsuario);
                         break;
                     case 3:
                         Servicios.crearServicio(codUsuario);
