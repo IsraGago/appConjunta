@@ -20,8 +20,6 @@ public class Servicios {
             System.out.print("Número máximo de personas: ");
             String maxUsuarios = System.console().readLine();
 
-            // int resultado = sentencia.executeUpdate("INSERT INTO usuarios (usuario,
-            // password) VALUES ('" + titulo + "', '" "')");
             String sql = "INSERT INTO servicios (codUsuario,titulo,descripcion,ubicacion,maxUsuarios) VALUES ('"
                     + codUsuario + "','" + titulo + "','" + descripcion + "','" + ubicacion + "','" + maxUsuarios
                     + "')";
