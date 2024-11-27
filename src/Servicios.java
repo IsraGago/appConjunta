@@ -120,7 +120,8 @@ public class Servicios {
             }
             return resultado == 1;
         } catch (SQLException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            System.out.println("ERROR: no se ha podido solicitar el servicio");
             return false;
         }
     }
