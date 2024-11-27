@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class Conexion {
      // Datos de conexión a la base de datos (localhost)
     static final String HOST = "localhost";
-    static final String DATABASE = "servicios";
+    static final String DATABASE = "appconjunta";
     static final String USER = "root";
     static final String PASSWORD = "";
     static final String PORT = "3306";

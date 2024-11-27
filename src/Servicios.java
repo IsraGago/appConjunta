@@ -35,6 +35,7 @@ public class Servicios {
             return false;
         }
     }
+
     public static void listarServicios() {
         Connection conexion = Conexion.conectar();
 
@@ -42,8 +43,9 @@ public class Servicios {
         try {
             sentencia = conexion.createStatement();
 
-            ResultSet resultado = sentencia.executeQuery("SELECT codServicio,usuario,fechaCreacion,titulo FROM servicios inner join usuarios on servicios.codUsuario = usuarios.codUsuario");
-
+            ResultSet resultado = sentencia.executeQuery(
+                    "SELECT codServicio,usuario,fechaCreacion,titulo FROM servicios inner join usuarios on servicios.codUsuario = usuarios.codUsuario");
+            System.out.println("codServicio \t titulo \t usuario \t fecha de creacion");
             while (resultado.next()) {
                 // Procesa los datos
                 int codServicio = resultado.getInt("codServicio");
@@ -52,8 +54,8 @@ public class Servicios {
                 String titulo = resultado.getString("titulo");
 
                 // Procesa los datos
-                System.out.println(
-                        "Código del servicio: " + codServicio +", título del servicio: "+titulo +", usuario creador: " + usuario + ", fecha de creación: " + fechaCreacion);
+                System.out.printf("%d \t\t %s \t %s \t %s%n", codServicio, titulo, usuario, fechaCreacion);
+
             }
             System.out.println("------------------------------------------------------------------");
 
@@ -64,6 +66,7 @@ public class Servicios {
             e.printStackTrace();
         }
     }
+
     public static void listarServicios(int codUsuario) {
         Connection conexion = Conexion.conectar();
 
@@ -71,7 +74,9 @@ public class Servicios {
         try {
             sentencia = conexion.createStatement();
 
-            ResultSet resultado = sentencia.executeQuery("SELECT codServicio,usuario,fechaCreacion,titulo FROM servicios inner join usuarios on servicios.codUsuario = usuarios.codUsuario where servicios.codUsuario ="+codUsuario);
+            ResultSet resultado = sentencia.executeQuery(
+                    "SELECT codServicio,usuario,fechaCreacion,titulo FROM servicios inner join usuarios on servicios.codUsuario = usuarios.codUsuario where servicios.codUsuario ="
+                            + codUsuario);
 
             System.out.println("codServicio \t titulo \t usuario \t fecha de creacion");
             while (resultado.next()) {
@@ -82,7 +87,7 @@ public class Servicios {
                 String titulo = resultado.getString("titulo");
 
                 // Procesa los datos
-                System.out.printf("%d %s %s %s",codServicio,titulo,usuario,fechaCreacion);
+                System.out.printf("%d \t\t %s \t %s \t %s%n", codServicio, titulo, usuario, fechaCreacion);
             }
             System.out.println("------------------------------------------------------------------");
 
@@ -93,8 +98,30 @@ public class Servicios {
             e.printStackTrace();
         }
     }
-    public static boolean solicitarServicio(int codServicio, int codUsuario){
-        // TODO IMPLEMENTAR METODO
-        return false;
+
+    public static boolean solicitarServicio(int codUsuario) {
+        Connection conexion = Conexion.conectar();
+        Statement sentencia;
+        try {
+            listarServicios();
+            sentencia = conexion.createStatement();
+            System.out.print("Código del servicio que quiere solicitar: ");
+            String codServicio = System.console().readLine();
+
+            String sql = "INSERT INTO usuarios_servicios (codUsuario,codServicio) VALUES ('"
+                    + codUsuario + "','" + codServicio + "')";
+
+            int resultado = sentencia.executeUpdate(sql);
+            sentencia.close();
+            conexion.close();
+            if (resultado == 1) {
+                System.out.println("Servicio solicitado con éxito.");
+                System.out.println("---------------------------------------");
+            }
+            return resultado == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

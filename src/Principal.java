@@ -12,7 +12,8 @@ public class Principal {
                 System.out.println("1. LISTAR TODOS LOS SERVICIOS");
                 System.out.println("2. LISTAR MIS SERVICIOS");
                 System.out.println("3. AÑADIR SERVICIO");
-                System.out.println("4. CERRAR SESIÓN");
+                System.out.println("4. SOLICITAR SERVICIO");
+                System.out.println("5. CERRAR SESIÓN");
                 System.out.println("0. SALIR");
                 System.out.println("------------------------------");
                 System.out.print("Respuesta: ");
@@ -37,7 +38,9 @@ public class Principal {
             while (respuesta != 0 && codUsuario != -1) {
                 respuesta = menu();
                 switch (respuesta) {
-                    case 0: System.out.println("SALIENDO DEL PROGRAMA"); break;
+                    case 0:
+                        System.out.println("SALIENDO DEL PROGRAMA");
+                        break;
                     case 1:
                         Servicios.listarServicios();
                         break;
@@ -48,10 +51,12 @@ public class Principal {
                         Servicios.crearServicio(codUsuario);
                         break;
                     case 4:
+                        Servicios.solicitarServicio(codUsuario);
+                        break;
+                    case 5:
                         System.out.println("CERRANDO SESIÓN");
                         codUsuario = -1;
                         break;
-
                     default:
                         System.out.println("Respuesta inválida.");
                         break;
