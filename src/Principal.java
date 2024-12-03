@@ -11,9 +11,11 @@ public class Principal {
             try {
                 System.out.println("1. LISTAR TODOS LOS SERVICIOS");
                 System.out.println("2. LISTAR MIS SERVICIOS");
-                System.out.println("3. AÑADIR SERVICIO");
-                System.out.println("4. SOLICITAR SERVICIO");
-                System.out.println("5. CERRAR SESIÓN");
+                System.out.println("3. LISTAR SERVICIOS SOLICITADOS");
+                System.out.println("4. AÑADIR SERVICIO");
+                System.out.println("5. SOLICITAR SERVICIO");
+                System.out.println("6. ELIMINAR UNO DE MIS SERVICIOS");
+                System.out.println("7. CERRAR SESIÓN");
                 System.out.println("0. SALIR");
                 System.out.println("------------------------------");
                 System.out.print("Respuesta: ");
@@ -48,12 +50,18 @@ public class Principal {
                         Servicios.listarServicios(codUsuario);
                         break;
                     case 3:
-                        Servicios.crearServicio(codUsuario);
+                        Servicios.listarServiciosSolicitados(codUsuario);
                         break;
                     case 4:
-                        Servicios.solicitarServicio(codUsuario);
+                        Servicios.crearServicio(codUsuario);
                         break;
                     case 5:
+                        Servicios.solicitarServicio(codUsuario);
+                        break;
+                    case 6: 
+                        Servicios.eliminarMiServicio(codUsuario);
+                        break;
+                    case 7:
                         System.out.println("CERRANDO SESIÓN");
                         codUsuario = -1;
                         break;
