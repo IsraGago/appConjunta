@@ -53,6 +53,7 @@ public class Servicios {
             if (resultado == 1) {
                 System.out.println("Servicio insertado con éxito.");
             }
+            System.out.println("--------------------------------------");
             return resultado == 1;
         } catch (SQLException e) {
             e.printStackTrace();
